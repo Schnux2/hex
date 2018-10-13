@@ -1,5 +1,4 @@
 hex version 0.1, mostly by Schnux
-
 A modification for Minetest (https://www.minetest.net ) which provides prisms with a hexagonal base area which behave similar to nodes.
 See license.txt for license information.
 

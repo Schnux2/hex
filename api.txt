@@ -1,0 +1,51 @@
+Simple API:
+-----------
+
+hex.register_prism(subname,prism_definition,craftitem_definition):
+	This function registers a craftitem and an entity called "hex:prism_"..subname (so subname should be without a mod prefix)
+	prism_definition:
+		* is like a normal entity definition, except:
+		* When you alter the "visual" or "mesh" fields, the prism will just look different, but the internal calculations will be the same,
+		  so there are probably weird results.
+		* The field "_height" is for e.g. a slab, it is measured in nodes (so the default is 1)
+		* The field "_mesh_offset_y" is also for a slab, because the center of a prism slab seems to be below the center of a normal prism
+		  (so with a normal prism, it is zero, with a slab, it is -0.25).
+		* The field "_prism" has to be true (The default for it is also true, so just leave it unchanged).
+		* The field "_groups" defines the tools which are able to dig the prism.
+		* The functions "on_punch" and "on_rightclick" are already defined.
+		* The functions "_contains(pos)", "_overlaps_with(obj)" and "_get_fine_pointing_pos(player)" are already defined.
+		  (Just in case you want to use them, _get_fine_pointing_pos(player) does not only return the position, but also an integer corresponding to the side:
+		  1,2,3,4,5,6 means a side of the mantle (starting from the one "right-front" (+x/-z) anticlockwise)
+		  7 means the upper side, 8 the lower)
+		* The field "_temporary" should never be true.
+	craftitem_definition:
+		* The field "_prism" has here also to be true.
+		* The "on_place" function is already defined.
+
+hex.check_for_overlaps(obj):
+	Should be obvious, checks whether obj overlaps with any other prism.
+
+hex.pos_normal_to_hex(pos):
+	Simple convenience function which is not actually needed and returns a "hex_pos" which makes it easier to calculate some values.
+	When measured in "hex_pos" units, the distance from a prism to the next prism whose center is on the same parallel line to one
+	of the coordinate axes is 1.
+
+hex.pos_hex_to_normal(hex_pos)
+	Turns a hex_pos into a "normal" pos again.
+
+hex.vector_round(v)
+	(Never actually used.)
+	Round v.x and v.z to whole numbers and whole numbers + 0.5 and v.y just to whole numbers, so if v is the position difference between
+	two positions pos1 and pos2, then vector.round(v) is the (position difference) value nearest to pos2 where a prism can stand if it is
+	"connected" with pos1 (so if one placed it there by first placing a prism at pos1 and then only building prisms which are connected with
+	the one on pos1).
+
+This mod uses internally a prism called "hex:prism_temporary".
+
+The mesh "hex_prism.obj" is intended for creating a simple prism out of an already existing (quadratic) texture. Its results are maybe not that
+nice-looking, but they are very easy to create.
+The mesh "hex_prism_1.obj" is intended for a real UV-map and may therefore produce much better results, but is not as easy to use.
+The mesh "hex_prism_2.obj" is also intended for a real UV-map whose pixels (on the upper and lower side) are projected on small triangles
+(so nice-looking tiling is possible). It was created using the script "model_generator.lua" which is quite badly written.
+The mesh "hex_prism_slab.obj" is again only a simple, not that nice-looking mesh, the mesh "hex_prism_slab_1.obj" is again for an UV-map, the mesh
+"hex_prism_slab_2.obj" is again for an UV map and has triangular pixels.
