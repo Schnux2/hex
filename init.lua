@@ -498,4 +498,4 @@ hex.register_prism("temporary",
 	{_temporary=true},
 	{groups={not_in_creative_inventory=1}})
 
-dofile(minetest.get_modpath(minetest.get_current_modname()).."\\test.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname())..DIR_DELIM.."test.lua")
