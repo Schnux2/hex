@@ -46,6 +46,6 @@ The mesh "hex_prism.obj" is intended for creating a simple prism out of an alrea
 nice-looking, but they are very easy to create.
 The mesh "hex_prism_1.obj" is intended for a real UV-map and may therefore produce much better results, but is not as easy to use.
 The mesh "hex_prism_2.obj" is also intended for a real UV-map whose pixels (on the upper and lower side) are projected on small triangles
-(so nice-looking tiling is possible). It was created using the script "model_generator.lua" which is quite badly written.
+(so nice-looking tiling is possible). It was created using the script "model_generator.lua".
 The mesh "hex_prism_slab.obj" is again only a simple, not that nice-looking mesh, the mesh "hex_prism_slab_1.obj" is again for an UV-map, the mesh
 "hex_prism_slab_2.obj" is again for an UV map and has triangular pixels.
